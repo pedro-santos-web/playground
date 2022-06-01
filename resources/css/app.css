@@ -1,0 +1,45 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+
+	html {
+		@apply h-full w-screen;
+	}
+
+	body {
+		@apply overflow-x-hidden w-screen h-full p-0 m-0;
+	}
+
+	#map {
+		@apply h-full w-screen;
+	}
+
+	.sidebar-icon {
+		@apply relative flex items-center justify-center h-12 w-12 my-2 mx-auto shadow-lg bg-gray-800 text-green-500 hover:bg-green-600 rounded-3xl hover:rounded-xl transition-all duration-300 ease-linear cursor-pointer;	
+	}
+
+	.sidebar-tooltip {
+		@apply absolute w-auto p-2 m-2 min-w-max left-14 rounded-md shadow-md text-white bg-gray-900 text-xs font-bold transition-all duration-100 scale-0 origin-left;
+	}
+
+	svg {
+		@apply fill-green-500 group-hover:fill-white;
+	}
+
+	.input-container {
+		@apply shadow-xl bg-primary my-10 h-fit flex flex-col justify-between rounded-xl py-10 px-10 container;
+	}
+
+	.input-control {
+		@apply shadow-md rounded-md border-solid border-2 border-transparent focus-visible:outline-transparent mt-5;
+		height: 40px;
+	}
+
+	.btn-primary {
+		@apply bg-green-500 hover:bg-white text-primary font-medium transition-all duration-100 rounded-md ease-linear ml-4 px-5 py-2;
+		height: 40px;
+	}
+
+}
