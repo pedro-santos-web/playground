@@ -29,7 +29,7 @@
 	}
 
 	.input-container {
-		@apply shadow-xl bg-primary my-10 h-fit flex flex-col justify-between rounded-xl py-10 px-10 container;
+		@apply shadow-xl bg-primary my-6 h-fit flex flex-col justify-between rounded-xl py-10 px-10 container;
 	}
 
 	.input-control {

@@ -15,8 +15,19 @@
 integrity="sha512-BB3hKbKWOc9Ez/TAwyWxNXeoV9c1v6FIeYiBieIWkpLjauysF18NzgR1MBNBXf8/KABdlkX68nAhlwcDFLGPCQ=="
 crossorigin=""></script>
 <script>
+	@if(isset($lat) && isset($lon))
+	
+	var map = L.map('map').setView(["{{$lat}}", "{{$lon}}"], 8);
+	
+	let marker = new L.Marker(["{{$lat}}", "{{$lon}}"]);
+	marker.addTo(map);
+
+	@else
+	
 	var map = L.map('map').setView([39.415, -8.904], 8);
 	// var map = L.map('map').setView([51.505, -0.09], 13);
+	
+	@endif
 
 	L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 		maxZoom: 19,

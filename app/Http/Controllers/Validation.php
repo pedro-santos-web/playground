@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Host;
+use App\Http\Controllers\Ipinfo;
 
 class Validation extends Controller
 {
@@ -30,28 +31,47 @@ class Validation extends Controller
 
 		}
 		
-		if(\Request::isMethod('post') && \Request::has('website')){
+		if(\Request::isMethod('post')){
 
-			$url = \Request::get('website');
+			if(\Request::has('website')){
 
-			$curl = curl_init($url);
-			curl_setopt($curl, CURLOPT_NOBODY, true);
-			curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, 0);
-			curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, 0);
-			curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
-			curl_setopt($curl, CURLOPT_FILETIME, true);
+				$url = \Request::get('website');
+	
+				$curl = curl_init($url);
+				curl_setopt($curl, CURLOPT_NOBODY, true);
+				curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, 0);
+				curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, 0);
+				curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+				curl_setopt($curl, CURLOPT_FILETIME, true);
+	
+				$result = curl_exec($curl);
+				$http_code = curl_getinfo($curl, CURLINFO_HTTP_CODE);
+	
+				$info = curl_getinfo($curl);
+				$info['filename'] = date("d-m-Y H:i:s", $info['filetime']);
+	
+				curl_close($curl);
 
-			$result = curl_exec($curl);
-			$http_code = curl_getinfo($curl, CURLINFO_HTTP_CODE);
+			}
 
-			$info = curl_getinfo($curl);
-			$info['filename'] = date("d-m-Y H:i:s", $info['filetime']);
+			if(\Request::has('ip')){
 
-			curl_close($curl);
-			
+				$ip = \Request::get('ip');
+				$request = Host::dataIp($ip);
+				$response = $request->all;
+				$loc = $request->loc;
+
+			}
+
+			if(!isset($info)) $info = "";
+			if(!isset($response)) $response = "";
+			if(!isset($loc)) $loc = "";
+
 			$data = array(
 				'hosts' => $hosts,
 				'info' => $info,
+				'response' => $response,
+				'loc' => $loc,
 			);
 
 			return view('hosts.list', $data);
@@ -83,7 +103,7 @@ class Validation extends Controller
 			if($request->hasFile('image')){
 				
 				$request->validate([
-					'image' => 'mimes:jpeg,bmp,png'
+					'image' => 'mimes:jpeg,bmp,png,svg',
 				]);
 
 				$request->file('image')->store('logos', 'public');
@@ -98,11 +118,20 @@ class Validation extends Controller
 
 			}
 
-			return view('hosts.list');
+			return redirect('/list-host');
 
 		}
 
 		return view('hosts.create');
+
+	}
+
+	public function delete($host_id){
+
+		$delete = Host::findorfail($host_id);
+		$delete->delete();
+
+		return redirect('/list-host');
 
 	}
 

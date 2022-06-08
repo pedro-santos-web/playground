@@ -5,25 +5,38 @@
 @section('content')
 <div class="relative flex flex-col w-screen bg-gray-700 min-h-screen justify-start items-center py-20">
 
+	@if(isset($hosts))
 	@foreach($hosts as $host)
 		@include('partials.hosts')
 	@endforeach
+	@endif
 
-	<div class="input-container">
+	<div class="input-container flex-row">
 		<form action="{{ route('list_host') }}" method="POST">
 			@csrf
-			<label for="website" class="text-white font-bold text-3xl mb-5">Custom check</label>
+			<label for="website" class="text-white font-bold text-3xl mb-5">Domain Check</label>
 			<br>
-			<small class="text-white text-lg">www.example.com</small>
+			<small class="text-white text-md">(www.example.com)</small>
 			<br>
 			<input type="text" class="input-control" name="website" required>
 			<button type="submit" class="btn-primary">
-				Verify
+				Check
+			</button>
+		</form>
+		<form action="{{ route('list_host') }}" method="POST">
+			@csrf
+			<label for="ip" class="text-white font-bold text-3xl mb-5">IP Check</label>
+			<br>
+			<small class="text-white text-md">(162.222.222.22)</small>
+			<br>
+			<input type="text" class="input-control" name="ip" required>
+			<button type="submit" class="btn-primary">
+				Check
 			</button>
 		</form>
 	</div>
 
-	@if(isset($info))
+	@if(isset($info) && !empty($info))
 	<div class="input-container">
 		<h2 class="font-bold text-green-500 text-3xl mb-5">Results</h2>
 		<ul class="lg:columns-4">
@@ -40,6 +53,26 @@
 			@endif
 			@endforeach
 		</ul>
+	</div>
+	@endif
+
+	@if(isset($response) && !empty($response))
+	<div class="input-container">
+		<h2 class="font-bold text-green-500 text-3xl mb-5">Results</h2>
+		<ul class="lg:columns-2">
+			@foreach($response as $i => $t)
+			<li class="text-lg text-white"><b>{{ $i }}</b> => {{ $t }}</li>
+			@endforeach
+		</ul>
+		@if(isset($loc) && !empty($loc))
+		<form action="{{ route('map') }}" method="POST">
+			@csrf
+			<input type="hidden" name="loc" value="{{ $loc }}" required>
+			<button type="submit" class="btn-primary ml-0 mt-4">
+				See on map
+			</button>
+		</form>
+		@endif
 	</div>
 	@endif
 
