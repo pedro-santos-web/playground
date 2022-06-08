@@ -17,7 +17,7 @@ crossorigin=""></script>
 <script>
 	@if(isset($lat) && isset($lon))
 	
-	var map = L.map('map').setView(["{{$lat}}", "{{$lon}}"], 8);
+	var map = L.map('map').setView(["{{$lat}}", "{{$lon}}"], 15);
 	
 	let marker = new L.Marker(["{{$lat}}", "{{$lon}}"]);
 	marker.addTo(map);
@@ -25,7 +25,6 @@ crossorigin=""></script>
 	@else
 	
 	var map = L.map('map').setView([39.415, -8.904], 8);
-	// var map = L.map('map').setView([51.505, -0.09], 13);
 	
 	@endif
 
