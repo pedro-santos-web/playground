@@ -64,10 +64,11 @@
 			<li class="text-lg text-white"><b>{{ $i }}</b> => {{ $t }}</li>
 			@endforeach
 		</ul>
-		@if(isset($loc) && !empty($loc))
+		@if(isset($loc) && !empty($loc) && isset($ip) && !empty($ip))
 		<form action="{{ route('map') }}" method="POST">
 			@csrf
 			<input type="hidden" name="loc" value="{{ $loc }}" required>
+			<input type="hidden" name="ip" value="{{ $ip }}" required>
 			<button type="submit" class="btn-primary ml-0 mt-4">
 				See on map
 			</button>

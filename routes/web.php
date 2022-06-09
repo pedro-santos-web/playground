@@ -25,3 +25,5 @@ Route::any('/map', [Map::class, 'index'])->name('map');
 Route::any('/list-host', [Validation::class, 'index'])->name('list_host');
 Route::any('/create-host', [Validation::class, 'create'])->name('create_host');
 Route::post('/delete-host/{host_id}', [Validation::class, 'delete'])->name('delete_host');
+Route::get('/edit-host/{host_id}', [Validation::class, 'edit'])->name('edit_host');
+Route::post('/update-host/{host_id}', [Validation::class, 'update'])->name('update_host');

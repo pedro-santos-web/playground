@@ -659,6 +659,14 @@ svg {
 .w-screen {
   width: 100vw;
 }
+.w-fit {
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+}
+.w-full {
+  width: 100%;
+}
 .w-16 {
   width: 4rem;
 }

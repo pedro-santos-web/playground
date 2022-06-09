@@ -11,18 +11,20 @@ class Map extends Controller
 
 		if(\Request::isMethod('post')){
 
-			if(\Request::has('loc')){
+			if(\Request::has('loc') && \Request::has('ip')){
 
 				$loc = \Request::get('loc');
 				$loc = explode(',', $loc);
 				$lat = $loc[0];
 				$lon = $loc[1];
+				$ip = \Request::get('ip');
 
 			}
 
 			$data = array(
 				'lat' => $lat,
 				'lon' => $lon,
+				'ip' => $ip,
 			);
 
 			return view('pages.mapa', $data);

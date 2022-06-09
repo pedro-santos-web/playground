@@ -52,7 +52,7 @@ class Validation extends Controller
 	
 				curl_close($curl);
 
-			}
+			} else $info = "";
 
 			if(\Request::has('ip')){
 
@@ -61,17 +61,18 @@ class Validation extends Controller
 				$response = $request->all;
 				$loc = $request->loc;
 
+			} else {
+				$response = "";
+				$loc = "";
+				$ip = "";
 			}
-
-			if(!isset($info)) $info = "";
-			if(!isset($response)) $response = "";
-			if(!isset($loc)) $loc = "";
 
 			$data = array(
 				'hosts' => $hosts,
 				'info' => $info,
 				'response' => $response,
 				'loc' => $loc,
+				'ip' => $ip,
 			);
 
 			return view('hosts.list', $data);
@@ -94,6 +95,7 @@ class Validation extends Controller
 
 			$request->validate([
 				'name' => 'required',
+				'url' => 'required',
 			]);
 
 			if(\Request::has('url')){
@@ -128,10 +130,49 @@ class Validation extends Controller
 
 	public function delete($host_id){
 
-		$delete = Host::findorfail($host_id);
-		$delete->delete();
+		$host = Host::findorfail($host_id);
+		$host->delete();
 
 		return redirect('/list-host');
+
+	}
+
+	public function edit($host_id){
+
+		$host = Host::findorfail($host_id);
+
+		$data = array("host" => $host);
+
+		return view('hosts.edit', $data);
+
+	}
+
+	public function update(Request $request, $host_id){
+
+		if(\Request::isMethod('post')){
+
+			$host = Host::findorfail($host_id);
+
+			$request->validate([
+				'name' => 'required',
+				'url' => 'required',
+				'ip' => 'required',
+			]);
+
+			$host->fill([
+				'name' => $request->name,
+				'url' => $request->url,
+				'ip' => $request->ip,
+			]);
+			$host->save();
+
+			return redirect('/list-host')->withSucess("Host updated!");
+
+		} else {
+
+			return redirect('/list-host');
+
+		}
 
 	}
 

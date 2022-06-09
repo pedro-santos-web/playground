@@ -15,12 +15,13 @@
 integrity="sha512-BB3hKbKWOc9Ez/TAwyWxNXeoV9c1v6FIeYiBieIWkpLjauysF18NzgR1MBNBXf8/KABdlkX68nAhlwcDFLGPCQ=="
 crossorigin=""></script>
 <script>
-	@if(isset($lat) && isset($lon))
+	@if(isset($lat) && isset($lon) && isset($ip))
 	
 	var map = L.map('map').setView(["{{$lat}}", "{{$lon}}"], 15);
 	
 	let marker = new L.Marker(["{{$lat}}", "{{$lon}}"]);
 	marker.addTo(map);
+	let popup = L.popup().setLatLng(["{{$lat}}", "{{$lon}}"] ).setContent("<p>{{ $ip }}</p>").openOn(map);
 
 	@else
 	
@@ -30,7 +31,7 @@ crossorigin=""></script>
 
 	L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 		maxZoom: 19,
-		attribution: '© OpenStreetMap'
+		attribution: '© Pedro Santos'
 	}).addTo(map);
 </script>
 @endpush
