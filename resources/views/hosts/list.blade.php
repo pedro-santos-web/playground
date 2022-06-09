@@ -5,6 +5,16 @@
 @section('content')
 <div class="relative flex flex-col w-screen bg-gray-700 min-h-screen justify-start items-center py-20">
 
+	@if(session()->has('message'))
+	<div class="input-container w-fit">
+		<div class="alert alert-success">
+			<p class="text-green-500 text-2xl font-bold">
+				{{ session()->get('message') }}
+			</p>
+		</div>
+	</div>
+	@endif
+
 	@if(isset($hosts))
 	@foreach($hosts as $host)
 		@include('partials.hosts')

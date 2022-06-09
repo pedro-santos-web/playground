@@ -3,8 +3,12 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use File;
+
 use App\Models\Host;
+
 use App\Http\Controllers\Ipinfo;
+
 
 class Validation extends Controller
 {
@@ -105,7 +109,7 @@ class Validation extends Controller
 			if($request->hasFile('image')){
 				
 				$request->validate([
-					'image' => 'mimes:jpeg,bmp,png,svg',
+					'image' => 'mimes:jpeg,jpg,bmp,png,svg',
 				]);
 
 				$request->file('image')->store('logos', 'public');
@@ -131,6 +135,11 @@ class Validation extends Controller
 	public function delete($host_id){
 
 		$host = Host::findorfail($host_id);
+
+		if(File::exists(public_path('storage/logos/') . $host->file_path)) {
+			File::delete(public_path('storage/logos/') . $host->file_path);
+		}
+
 		$host->delete();
 
 		return redirect('/list-host');
@@ -154,19 +163,42 @@ class Validation extends Controller
 			$host = Host::findorfail($host_id);
 
 			$request->validate([
+				// 'image' => 'mimes:jpeg,jpg,bmp,png,svg',
 				'name' => 'required',
 				'url' => 'required',
 				'ip' => 'required',
 			]);
 
-			$host->fill([
-				'name' => $request->name,
-				'url' => $request->url,
-				'ip' => $request->ip,
-			]);
+			//! Image update not working
+			if($request->hasFile('image')){
+
+				if(File::exists(public_path('storage/logos/') . $host->file_path)) {
+					File::delete(public_path('storage/logos/') . $host->file_path);
+				}
+
+				$request->file('image')->store('logos', 'public');
+				// $host->file_path = $request->file('image')->hashName();
+
+				$host->fill([
+					'name' => $request->name,
+					'url' => $request->url,
+					'ip' => $request->ip,
+					'file_path' => $request->file('image')->hashName(),
+				]);
+
+			} else {
+
+				$host->fill([
+					'name' => $request->name,
+					'url' => $request->url,
+					'ip' => $request->ip,
+				]);
+
+			}
+
 			$host->save();
 
-			return redirect('/list-host')->withSucess("Host updated!");
+			return redirect('/list-host')->with("message", "Host updated!");
 
 		} else {
 

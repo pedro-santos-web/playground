@@ -32,8 +32,6 @@ return [
 
 	'ipinfo' => [
 		'access_token' => env('IPINFO_SECRET'),
-		// 'cache_maxsize' => {{cache_maxsize}},
-		// 'cache_ttl' => {{cache_ttl}},
 		'filter' => false,
 	],
 

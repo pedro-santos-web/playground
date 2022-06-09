@@ -24,6 +24,7 @@
 			<input type="file" name="image" class="text-white my-5" required>
 			
 			<label for="url" class="text-white font-bold text-xl">URL</label>
+			<small class="text-white text-md">(www.example.com)</small>
 			<input type="text" name="url" class="input-control mb-5" required>
 
 			<button type="submit" class="btn-primary mx-0 my-3">Create</button>
