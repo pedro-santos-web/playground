@@ -7,7 +7,7 @@
 
 	<div class="input-container flex-row w-fit">
 
-		<form action="{{ route('update_host', $host->id) }}" method="POST">
+		<form action="{{ route('update_host', $host->id) }}" method="POST" enctype="multipart/form-data">
 			@csrf
 			<label for="name" class="text-white font-bold text-xl">Name</label>
 			<br>

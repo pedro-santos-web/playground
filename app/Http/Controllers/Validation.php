@@ -163,21 +163,22 @@ class Validation extends Controller
 			$host = Host::findorfail($host_id);
 
 			$request->validate([
-				// 'image' => 'mimes:jpeg,jpg,bmp,png,svg',
 				'name' => 'required',
 				'url' => 'required',
 				'ip' => 'required',
 			]);
-
-			//! Image update not working
+			
 			if($request->hasFile('image')){
 
+				$request->validate([
+					'image' => 'mimes:jpeg,jpg,bmp,png,svg',
+				]);
+				
 				if(File::exists(public_path('storage/logos/') . $host->file_path)) {
 					File::delete(public_path('storage/logos/') . $host->file_path);
 				}
-
+				
 				$request->file('image')->store('logos', 'public');
-				// $host->file_path = $request->file('image')->hashName();
 
 				$host->fill([
 					'name' => $request->name,
@@ -185,6 +186,10 @@ class Validation extends Controller
 					'ip' => $request->ip,
 					'file_path' => $request->file('image')->hashName(),
 				]);
+	
+				$host->save();
+	
+				return redirect('/list-host')->with("message", "Host updated!");
 
 			} else {
 
@@ -193,12 +198,12 @@ class Validation extends Controller
 					'url' => $request->url,
 					'ip' => $request->ip,
 				]);
+	
+				$host->save();
+	
+				return redirect('/list-host')->with("message", "Host updated!");
 
 			}
-
-			$host->save();
-
-			return redirect('/list-host')->with("message", "Host updated!");
 
 		} else {
 
