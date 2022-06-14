@@ -22,6 +22,11 @@ Route::get('/', function() {
 
 Route::any('/map', [Map::class, 'index'])->name('map');
 
+/*
+|--------------------------------------------------------------------------
+| Hosts
+|--------------------------------------------------------------------------
+*/
 Route::any('/list-host', [Validation::class, 'index'])->name('list_host');
 Route::any('/create-host', [Validation::class, 'create'])->name('create_host');
 Route::post('/delete-host/{host_id}', [Validation::class, 'delete'])->name('delete_host');

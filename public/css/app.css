@@ -433,6 +433,8 @@ body {
   height: 100%;
   width: 100vw;
   overflow-x: hidden;
+  --tw-bg-opacity: 1;
+  background-color: rgb(32 34 37 / var(--tw-bg-opacity));
   padding: 0px;
 }
 #map {
@@ -596,9 +598,6 @@ svg {
 .btn-primary {
 		height: 40px;
 	}
-.fixed {
-  position: fixed;
-}
 .relative {
   position: relative;
 }
@@ -607,6 +606,9 @@ svg {
 }
 .left-0 {
   left: 0px;
+}
+.float-left {
+  float: left;
 }
 .m-0 {
   margin: 0px;
@@ -650,14 +652,14 @@ svg {
 .h-screen {
   height: 100vh;
 }
+.h-full {
+  height: 100%;
+}
 .h-4 {
   height: 1rem;
 }
 .min-h-screen {
   min-height: 100vh;
-}
-.w-screen {
-  width: 100vw;
 }
 .w-fit {
   width: -webkit-fit-content;
@@ -718,9 +720,8 @@ svg {
   --tw-bg-opacity: 1;
   background-color: rgb(239 68 68 / var(--tw-bg-opacity));
 }
-.py-20 {
-  padding-top: 5rem;
-  padding-bottom: 5rem;
+.p-20 {
+  padding: 5rem;
 }
 .px-3 {
   padding-left: 0.75rem;

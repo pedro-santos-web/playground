@@ -3,7 +3,7 @@
 @section('title') Check domain @stop
 
 @section('content')
-<div class="relative flex flex-col w-screen bg-gray-700 min-h-screen justify-start items-center py-20">
+<div class="relative flex flex-col bg-gray-700 min-h-screen justify-start items-center p-20">
 
 	@if(session()->has('message'))
 	<div class="input-container w-fit">

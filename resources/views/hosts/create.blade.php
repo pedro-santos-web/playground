@@ -12,7 +12,7 @@
 	</div>
 @endif
 
-<div class="relative flex flex-col w-screen bg-gray-700 min-h-screen justify-start items-center py-20">
+<div class="relative flex flex-col bg-gray-700 min-h-screen justify-start items-center p-20">
 	<div class="input-container">
 		<form action="{{ route('create_host') }}" method="post" enctype="multipart/form-data" class="flex flex-col">
 			@csrf

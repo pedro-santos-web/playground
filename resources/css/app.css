@@ -9,7 +9,7 @@
 	}
 
 	body {
-		@apply overflow-x-hidden w-screen h-full p-0 m-0;
+		@apply overflow-x-hidden w-screen bg-primary h-full p-0 m-0;
 	}
 
 	#map {
