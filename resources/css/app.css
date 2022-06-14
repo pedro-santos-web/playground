@@ -13,11 +13,16 @@
 	}
 
 	#map {
-		@apply h-full w-screen;
+		@apply h-full;
+	}
+
+	.header {
+		@apply float-left top-0 left-0 h-full w-16 m-0 flex flex-col bg-primary text-secondary;
+		z-index: 10000;
 	}
 
 	.sidebar-icon {
-		@apply relative flex items-center justify-center h-12 w-12 my-2 mx-auto shadow-lg bg-gray-800 text-green-500 hover:bg-green-600 rounded-3xl hover:rounded-xl transition-all duration-300 ease-linear cursor-pointer;	
+		@apply relative flex items-center justify-center h-12 w-12 my-2 mx-auto shadow-lg bg-gray-800 text-secondary hover:bg-blue-900 rounded-3xl hover:rounded-xl transition-all duration-300 ease-linear cursor-pointer;	
 	}
 
 	.sidebar-tooltip {
@@ -25,7 +30,7 @@
 	}
 
 	svg {
-		@apply fill-green-500 group-hover:fill-white;
+		@apply fill-secondary group-hover:fill-white;
 	}
 
 	.input-container {
@@ -38,8 +43,12 @@
 	}
 
 	.btn-primary {
-		@apply bg-green-500 hover:bg-white text-primary font-medium transition-all duration-100 rounded-md ease-linear ml-4 px-5 py-2;
+		@apply bg-secondary hover:bg-blue-900 text-white font-medium transition-all duration-100 rounded-md ease-linear ml-4 px-5 py-2;
 		height: 40px;
+	}
+
+	.delete {
+		margin-bottom: -10px;
 	}
 
 }

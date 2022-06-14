@@ -13,7 +13,7 @@
 	);
 @endphp
 
-<div class="float-left top-0 left-0 h-full w-16 m-0 flex flex-col bg-primary text-secondary" style="z-index: 10000;">
+<div class="header">
 
 	@for ($i = 0; $i < count($routes); $i++)
 		<a href="{{ route($routes[$i]) }}">

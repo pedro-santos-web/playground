@@ -8,7 +8,7 @@
 	@if(session()->has('message'))
 	<div class="input-container w-fit">
 		<div class="alert alert-success">
-			<p class="text-green-500 text-2xl font-bold">
+			<p class="text-secondary text-2xl font-bold">
 				{{ session()->get('message') }}
 			</p>
 		</div>
@@ -48,7 +48,7 @@
 
 	@if(isset($info) && !empty($info))
 	<div class="input-container">
-		<h2 class="font-bold text-green-500 text-3xl mb-5">Results</h2>
+		<h2 class="font-bold text-secondary text-3xl mb-5">Results</h2>
 		<ul class="lg:columns-4">
 			@foreach($info as $i => $t)
 			@if(is_array($t))
@@ -68,7 +68,7 @@
 
 	@if(isset($response) && !empty($response))
 	<div class="input-container">
-		<h2 class="font-bold text-green-500 text-3xl mb-5">Results</h2>
+		<h2 class="font-bold text-secondary text-3xl mb-5">Results</h2>
 		<ul class="lg:columns-2">
 			@foreach($response as $i => $t)
 			<li class="text-lg text-white"><b>{{ $i }}</b> => {{ $t }}</li>
