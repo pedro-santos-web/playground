@@ -3,7 +3,7 @@
 @section('title') Check domain @stop
 
 @section('content')
-<div class="relative flex flex-col bg-gray-700 min-h-screen justify-start items-center p-20">
+<div class="relative flex flex-col bg-gray-700 min-h-screen justify-start items-center p-10 lg:p-20">
 
 	@if(session()->has('message'))
 	<div class="input-container w-fit">
@@ -21,7 +21,8 @@
 	@endforeach
 	@endif
 
-	<div class="input-container flex-row">
+	<div class="input-container flex-col lg:flex-row">
+
 		<form action="{{ route('list_host') }}" method="POST">
 			@csrf
 			<label for="website" class="text-white font-bold text-3xl mb-5">Domain Check</label>
@@ -33,7 +34,8 @@
 				Check
 			</button>
 		</form>
-		<form action="{{ route('list_host') }}" method="POST">
+
+		<form action="{{ route('list_host') }}" method="POST" class="mt-8 lg:mt-0">
 			@csrf
 			<label for="ip" class="text-white font-bold text-3xl mb-5">IP Check</label>
 			<br>
@@ -44,6 +46,7 @@
 				Check
 			</button>
 		</form>
+		
 	</div>
 
 	@if(isset($info) && !empty($info))
