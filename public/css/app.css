@@ -514,7 +514,7 @@ body {
   transition-duration: 100ms;
 }
 svg {
-  fill: #1B75BC;
+  fill: #60a5fa;
 }
 .group:hover svg {
   fill: #fff;
