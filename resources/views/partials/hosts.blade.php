@@ -1,4 +1,3 @@
-{{-- <div class="input-container flex-row columns-2 md:columns-3 xl:columns-6"> --}}
 <div class="input-container flex-col lg:flex-row lg:columns-6">
 	<div class="px-3 flex flex-row lg:flex-col items-center lg:items-start justify-between">
 		@if($host->file_path)

@@ -9,12 +9,68 @@
 	}
 
 	body {
-		@apply overflow-x-hidden w-screen bg-primary h-full p-0 m-0;
+		@apply flex justify-center items-center overflow-x-hidden w-screen bg-gray-700 h-full p-0 m-0;
 	}
+
+
+	.main {
+		@apply shadow-xl rounded-xl h-fit bg-primary flex flex-col lg:flex-row lg:columns-6 justify-between mx-auto py-10 px-10 container;
+	}
+
+	.btn-primary {
+		@apply block text-secondary hover:text-white bg-gray-700 hover:bg-secondary focus:ring-4 focus:outline-none font-medium rounded-lg text-sm px-5 py-2 pb-3 text-center transition-all duration-300;
+	}
+
+
+
+
+	/** Modals **/
+
+	.modal-background {
+		@apply overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 w-full md:inset-0 h-full justify-center items-center;
+		/* background-color: #0000005e; */
+	}
+
+	.modal-close {
+		@apply absolute top-3 right-2.5 bg-gray-700 hover:bg-gray-500 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center transition-all duration-300;
+	}
+
+	.modal-close svg {
+		@apply w-5 h-5 fill-secondary;
+	}
+
+	.modal-close:hover svg {
+		@apply w-5 h-5 fill-white;
+	}
+
+	.modal-label {
+		@apply block mb-2 text-sm font-medium text-white;
+	}
+
+	.modal-input {
+		@apply bg-gray-700 text-white text-sm rounded-lg focus:ring-secondary focus:border-secondary active:ring-0 active:border-0 block w-full p-2.5;
+	}
+
+
+
+
+	/** Hosts **/
+
+	.delete {
+		@apply fill-red-500 cursor-pointer;
+		margin-bottom: -5px;
+	}
+
+
+
+
+
+
 
 	#map {
 		@apply h-full;
 	}
+
 
 	.header {
 		@apply float-left top-0 left-0 h-full w-16 m-0 flex flex-col bg-primary text-secondary;
@@ -42,14 +98,12 @@
 		height: 40px;
 	}
 
-	.btn-primary {
+	/* .btn-primary {
 		@apply bg-secondary hover:bg-white text-white hover:text-secondary font-medium transition-all duration-100 rounded-md ease-linear ml-4 px-5 py-2;
 		height: 40px;
-	}
+	} */
 
-	.delete {
-		margin-bottom: -10px;
-	}
+
 
 	/* ===== Scrollbar CSS ===== */
 	/* Firefox */
