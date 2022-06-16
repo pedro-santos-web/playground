@@ -8,6 +8,8 @@ use App\Http\Conrtollers\Ipinfo;
 
 use App\Models\Host;
 
+use File;
+
 class HostController extends Controller
 {
    public function add(Request $request){
@@ -40,18 +42,18 @@ class HostController extends Controller
 				$host->save();
 	
 			}
-	
-			return view('main');
+
+			return redirect('/');
 
 		}
 
 	}
 
-	public function delete($host_id) {
+	public function delete($id) {
 
 		if(\Request::isMethod('post')) {
 
-			$host = Host::findorfail($host_id);
+			$host = Host::findorfail($id);
 
 			if(File::exists(public_path('storage/logos/') . $host->file_path)) {
 				File::delete(public_path('storage/logos/') . $host->file_path);
@@ -59,7 +61,7 @@ class HostController extends Controller
 
 			$host->delete();
 
-			return view('main');
+			return redirect('/')->with("message", "Host deleted!");
 
 		} else {
 
@@ -69,21 +71,11 @@ class HostController extends Controller
 
 	}
 
-	public function edit($host_id) {
+	public function edit(Request $request, $id=null) {
 
-		$host = Host::findorfail($host_id);
-
-		$data = array("host" => $host);
-
-		return view('main', $data);
-
-	}
-
-	public function update(Request $request, $host_id) {
+		$host = Host::findorfail($id);
 
 		if(\Request::isMethod('post')) {
-
-			$host = Host::findorfail($host_id);
 
 			$request->validate([
 				'name' => 'required',
@@ -112,7 +104,7 @@ class HostController extends Controller
 	
 				$host->save();
 	
-				return redirect('/list-host')->with("message", "Host updated!");
+				return redirect('/')->with("message", "Host updated!");
 
 			} else {
 
@@ -124,13 +116,15 @@ class HostController extends Controller
 	
 				$host->save();
 	
-				return redirect('/list-host')->with("message", "Host updated!");
+				return redirect('/')->with("message", "Host updated!");
 
 			}
 
 		} else {
 
-			return abort(404);
+			$data = array("host" => $host);
+
+			return view('host.edit', $data);
 
 		}
 

@@ -82,7 +82,7 @@ class PanelController extends Controller
 				'ip' => $ip,
 			);
 
-			return view('main', $data);
+			return view('host.list', $data);
 
 		} else {
 
@@ -90,7 +90,7 @@ class PanelController extends Controller
 				'hosts' => $hosts,
 			);
 
-			return view('main', $data);
+			return view('host.list', $data);
 
 		}
 		

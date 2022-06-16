@@ -4,9 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class Map extends Controller
+class MapController extends Controller
 {
-   public function index()
+   public function map()
 	{
 
 		if(\Request::isMethod('post')){
@@ -27,11 +27,11 @@ class Map extends Controller
 				'ip' => $ip,
 			);
 
-			return view('pages.mapa', $data);
+			return view('partials.map', $data);
 
 		} else {
 
-			return view('pages.mapa');
+			return view('host.list');
 
 		}
 
