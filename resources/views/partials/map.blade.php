@@ -35,7 +35,7 @@ crossorigin=""></script>
 
 	L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 		maxZoom: 19,
-		attribution: '© Pedro Santos'
+		attribution: '© OpenStreetMap'
 	}).addTo(map);
 </script>
 @endpush
