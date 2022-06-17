@@ -7,8 +7,8 @@ It has the following features:
 - Edit hosts
 - Delete hosts
 - Check URL without saving
-- Check IP
-- Check IP location
+- Check IP without saving
+- Check IP location on map
 
 ## Tech used
 
