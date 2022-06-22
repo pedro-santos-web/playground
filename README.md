@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="/public/img/favicon/playground-blurred.png" alt="Playground" />
+</p>
+
 ## About Playground
 
 Playground is a simple app to get info from domains, ip addresses and save hosts that you would like to keep an eye on.
