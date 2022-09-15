@@ -9,14 +9,14 @@ use Illuminate\Support\Facades\Http;
 
 use ipinfo\ipinfo\IPinfo;
 
-class Host extends Model
-{
+class Host extends Model {
+	
 	use HasFactory;
 
 	protected $fillable = ["name", "file_path", "url", "ip", "created_at", "updated_at"];
 	
 	//get IP information from IPInfo API
-	public static function dataIp($ip){
+	public static function dataIp($ip) {
 
 		$access_token = env('IPINFO');		
 		$client = new IPinfo($access_token);
