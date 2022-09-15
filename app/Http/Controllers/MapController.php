@@ -9,9 +9,9 @@ class MapController extends Controller
    public function map()
 	{
 
-		if(\Request::isMethod('post')){
+		if(\Request::isMethod('post')) {
 
-			if(\Request::has('loc') && \Request::has('ip')){
+			if(\Request::has('loc') && \Request::has('ip')) {
 
 				$loc = \Request::get('loc');
 				$loc = explode(',', $loc);

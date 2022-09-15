@@ -12,7 +12,7 @@ use File;
 
 class HostController extends Controller
 {
-   public function add(Request $request){
+   public function add(Request $request) {
 
 		if(\Request::isMethod('post')) {
 
