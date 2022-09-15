@@ -10,8 +10,8 @@ use App\Models\Host;
 
 use File;
 
-class HostController extends Controller
-{
+class HostController extends Controller {
+
    public function add(Request $request) {
 
 		if(\Request::isMethod('post')) {
@@ -83,7 +83,7 @@ class HostController extends Controller
 				'ip' => 'required',
 			]);
 			
-			if($request->hasFile('image')){
+			if($request->hasFile('image')) {
 
 				$request->validate([
 					'image' => 'mimes:jpeg,jpg,bmp,png,svg',

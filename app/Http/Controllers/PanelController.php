@@ -8,10 +8,9 @@ use App\Http\Conrtollers\Ipinfo;
 
 use App\Models\Host;
 
-class PanelController extends Controller
-{
-   public function index() 
-	{
+class PanelController extends Controller {
+
+   public function index() {
 
 		$hosts = Host::all();
 

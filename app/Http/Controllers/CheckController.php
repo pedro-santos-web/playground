@@ -8,8 +8,8 @@ use App\Models\Host;
 
 use App\Http\Controllers\Ipinfo;
 
-class CheckController extends Controller
-{
+class CheckController extends Controller {
+	
 	public function ip() {
 
 		$hosts = Host::all();
